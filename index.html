@@ -1,0 +1,266 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!-- Image and text -->
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+            <a class="navbar-brand" href="#">
+                <img src="http://accionrh.com/wp-content/uploads/2019/06/logo-acamica-e1561247597386.jpg" 
+                    class="d-inline-block align-top"
+                    width="160"
+                    >
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            </div>
+       </nav>
+        <div class="container">
+            <div class="card mt-4">
+                <div class="card-header">
+                    Javascript
+                </div>
+                <div class="card-body">
+                    <div class="row pull-right">
+                        <div class="col-8">
+                            <p>
+                                <button class="btn btn-primary" type="button" 
+                                    data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" 
+                                    aria-controls="collapseExample">
+                                  Ver consignas
+                                </button>
+                            </p>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                  <p>1- Setear las propiedades de la imagen de acamica para que se vea normal (150px de ancho).</p>
+                                  <p>2- Implementar el metodo del boton Buscar, para que filtre la lista por nombre. El filtro no debe ser exacto
+                                      por ejemplo, si ingresan MAR el resultado debe ser martin, marcelo, mariela (ignora mayusculas o minusculas)
+                                  </p>
+                                  <p>3- Implementar el boton Reset para que limpie el criterio de busqueda y recargue la tabla con los registros originales</p>
+                                  <p>5- Implementar el boton Eliminar en la tabla para que se pueda eliminar una persona. Pedir confirmacion previamente.</p>
+                                  <p>6- Implementar el boton Actualizar Nombre para que pueda cambiar el nombre a una persona. (usar prompt).</p>
+                                  <p>7- Implementar la accion que elimina la primer persona.</p>
+                                  <p>8- Implementar la accion que elimina la ultima persona.</p>
+                                  <p>7- Implementar la accion Cantidad de personas, para que muestre un alert con la cantidad de personas que estan en la tabla.</p>
+                                  <p>7- Implementar la accion Alternar lista original, lista actualizada para que alterne entre ambas listas, con un delay de 5 segundos
+                                      una vez realizado el cambio que informe mediante un alert "la lista se ha actualizado".</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group mb-3">
+                                <input type="text" 
+                                    class="form-control" 
+                                    placeholder="Buscar por nombre" 
+                                    id="busquedaNombre">
+                                <div class="input-group-append">
+                                    <button 
+                                        class="btn btn-outline-primary" 
+                                        onclick="handleOnBuscarPorNombre()"
+                                        type="button" id="button-addon2">
+                                        Buscar
+                                    </button>
+                                    <button 
+                                        class="btn btn-outline-primary" 
+                                        onclick="handleOnLimpiarBusquedaPersona()"
+                                        type="button">
+                                        Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <hr>
+                    </div>
+                    <div class="row">
+                        <div class="col text-left">
+                            <button class="btn btn-sm btn-primary" 
+                                style="display: none;" 
+                                data-toggle="modal"
+                                data-target="#mdlPersona"
+                                onclick="limpiarNuevaPersona()"
+                                type="button">Agregar persona
+                            </button>
+                            
+                        </div>
+                        <div class="col text-right">
+                            <div class="btn-group mb-2">
+                                <button 
+                                    class="btn btn-secondary btn-sm dropdown-toggle" 
+                                    type="button" data-toggle="dropdown" 
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Acciones
+                                </button>
+                                <div class="dropdown-menu">
+                                    
+                                    <button class="dropdown-item" 
+                                        onclick="handleOnEliminarPrimero()"
+                                        type="button">
+                                        Eliminar primero
+                                    </button>
+                                    <button class="dropdown-item" 
+                                        onclick="handleOnEliminarUltimo()"
+                                        type="button">
+                                        Eliminar ultimo
+                                    </button>
+                                    <button class="dropdown-item" 
+                                        onclick="handleOnCantidadPersonas()"
+                                        type="button">
+                                        Cantidad de personas
+                                    </button>
+                                    <button class="dropdown-item" 
+                                        onclick="handleOnAlternarLista()"
+                                        type="button">
+                                        Alternar lista original, lista actualizada.
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table id="tablePersonas" class="table table-hover table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Identificador</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Apellido</th>
+                                    <th class="text-center">Edad</th>
+                                    <th class="text-center">Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="mdlPersona" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Alta de persona</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="frmPersona" novalidate>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input id="nombre" class="form-control" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un nombre
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="apellido">Apellido</label>
+                                    <input id="apellido" class="form-control" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un apellido
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="edad">Edad</label>
+                                    <input id="edad" class="form-control" type="number" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese una edad
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" 
+                            id="btnCloseNuevaPersona"
+                            class="btn btn-secondary" 
+                            data-dismiss="modal">
+                            Cancelar
+                        </button>
+                        <button type="button" 
+                            class="btn btn-primary" 
+                            onclick="leerPersona()">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="btnUpdate" type="button" class="btn" style="visibility:hidden" data-target="#mdlUpdate" data-toggle="modal">test</button>
+
+        <div class="modal fade" id="mdlUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Actualizar persona</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="frmUpdatePersona" novalidate>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Id</label>
+                                    <input id="idUpdate" disabled class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Nombre</label>
+                                    <input id="nombreUpdate" class="form-control" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un nombre
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Apellido</label>
+                                    <input id="apellidoUpdate" class="form-control" type="text" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese un apellido
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="form-label">Edad</label>
+                                    <input id="edadUpdate" class="form-control" type="number" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese una edad
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" 
+                            id="btnCloseUpdatePersona"
+                            class="btn btn-secondary" 
+                            data-dismiss="modal">
+                            Cancelar
+                        </button>
+                        <button type="button" 
+                            class="btn btn-primary" 
+                            onclick="leerPersonaActualizada()">
+                            Guardar
+                        </button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <script src="./js/index.js"></script>
+    </body>
+</html>
